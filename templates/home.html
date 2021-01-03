@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Pets</h3>
+      {% for pet in pets %}
+      <div class="col">
+        <img src="{{pet.photo_url}}" class="img-fluid img-thumbnail" alt="" style="width: 250px">
+        <h5><a href="/pets/{{pet.id}}">{{pet.name}}</a></h5>
+        <h6>Species: {{pet.species}}</h6>
+
+        {% if pet.available %}
+        <p><b>Available</b></p>
+        {% else%}
+        <p><b>Not Available</b></p>
+        {% endif %}
+
+        {% if pet.age%}
+        <p>Age: {{pet.age}}</p>
+        {% else%}
+        <p class="text-danger">NO AGE</p>
+        {% endif %}
+
+        {% if pet.notes %}
+        <p>Notes on pet: {{pet.notes}}</p>
+        {% else%}
+        <p class="text-danger">NO NOTES</p>
+        {% endif %}
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    <a href="/pets/add" class="btn btn-info">Add Pet</a>
+</div>
+
+{% endblock %}
